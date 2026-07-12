@@ -1,0 +1,71 @@
+@baseUrl = http://localhost:3000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTc4Mzg4MDIzMSwiZXhwIjoxNzgzODgxMTMxfQ.DD17NIYSU0V6NroRDzT0N0FTBvBz0luj6Jb52Vyp8Bc
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTc4Mzg4MDIzMSwiZXhwIjoxNzg0NDg1MDMxfQ.Zs7by9llvCS-UHe8xaJxj_pl9_aMOpkTkGKBzYkOLxk
+
+### 1. Реєстрація
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser2",
+  "email": "test2@test.com",
+  "password": "password1232",
+  "name": "Nata"
+}
+
+### 2. Логін
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+
+### 3. Отримати профіль (Захищений)
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{token}}
+
+### 4. Оновити токен
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+### 5. Логаут (Захищений)
+POST {{baseUrl}}/auth/logout
+Authorization: Bearer {{token}}
+
+### 6. Отримати всі оголошення
+GET {{baseUrl}}/announcements
+
+### 7. Створити оголошення (Захищений)
+POST {{baseUrl}}/announcements
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Продам палатку",
+  "description": "Гірська палатка у відмінному стані",
+  "price": 4000,
+  "category": "Спорт"
+}
+
+### 8. Отримати оголошення за ID
+GET {{baseUrl}}/announcements/3
+
+### 9. Оновити оголошення
+PATCH {{baseUrl}}/announcements/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "price": 6500,
+  "title": "Продам велосипед терміново"
+}
+
+### 10. Видалити оголошення
+DELETE {{baseUrl}}/announcements/1
+Authorization: Bearer {{token}}
