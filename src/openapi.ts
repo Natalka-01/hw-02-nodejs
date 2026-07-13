@@ -15,6 +15,24 @@ registry.registerComponent("securitySchemes", "bearerAuth", {
   bearerFormat: "JWT",
 });
 
+const security = [{ bearerAuth: [] }];
+
+
+// === AUTH ===
+registry.registerPath({ method: 'post', path: '/auth/register', summary: 'Реєстрація', responses: { 201: { description: 'Created' } } });
+registry.registerPath({ method: 'post', path: '/auth/login', summary: 'Логін', responses: { 200: { description: 'OK' } } });
+registry.registerPath({ method: 'post', path: '/auth/refresh', summary: 'Оновлення токена', responses: { 200: { description: 'OK' } } });
+registry.registerPath({ method: 'get', path: '/auth/me', summary: 'Профіль', security, responses: { 200: { description: 'OK' } } });
+registry.registerPath({ method: 'post', path: '/auth/logout', summary: 'Логаут', security, responses: { 201: { description: 'Created' } } });
+
+// === ANNOUNCEMENTS ===
+registry.registerPath({ method: 'get', path: '/announcements', summary: 'Всі оголошення', responses: { 200: { description: 'OK' } } });
+registry.registerPath({ method: 'get', path: '/announcements/{id}', summary: 'Одне оголошення', responses: { 200: { description: 'OK' } } });
+registry.registerPath({ method: 'post', path: '/announcements', summary: 'Створити', security, responses: { 201: { description: 'Created' } } });
+registry.registerPath({ method: 'patch', path: '/announcements/{id}', summary: 'Оновити', security, responses: { 200: { description: 'OK' } } });
+registry.registerPath({ method: 'delete', path: '/announcements/{id}', summary: 'Видалити', security, responses: { 204: { description: 'No Content' } } });
+
+
 export function generateOpenApiDocument() {
   const generator = new OpenApiGeneratorV3(registry.definitions);
 
