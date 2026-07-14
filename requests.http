@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA0Nzc2MCwiZXhwIjoxNzg0MDQ4NjYwfQ.uAgJyte2XRtyAN4SXn4CaofhUHLQiM-HqvyF0w_US08
-@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA0Nzc2MCwiZXhwIjoxNzg0NjUyNTYwfQ.vRFCCDJDB8QcQhRsCXo0e2ooc62qEvcxGJERiFDL6OY
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA0ODgyNiwiZXhwIjoxNzg0MDQ5NzI2fQ.WACnzLEGqFk1140BM8XGgtfrBJc2EZjzx7POgcse3W4
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA0ODgyNiwiZXhwIjoxNzg0NjUzNjI2fQ.Sun17hrMZzUl_afUBSPWJD4xuKWerjBUa1kqElyLRZY
 
 ### 1. Реєстрація
 POST {{baseUrl}}/auth/register
@@ -88,3 +88,28 @@ Content-Type: application/json
 
 ### 14. Спроба видалити оголошення без токена (має повернути 401 Unauthorized)
 DELETE {{baseUrl}}/announcements/3
+
+
+### 15. Помилка валідації 
+POST {{baseUrl}}/announcements
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Стіл", 
+  "description": "Мало",
+  "price": 0,
+  "category": "furniture" 
+}
+
+### 16. Успішне створення 
+POST {{baseUrl}}/announcements
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Продам новий стіл",
+  "description": "Чудовий дерев'яний стіл для кухні, майже не використовувався.",
+  "price": 1500,
+  "category": "sale"
+}
