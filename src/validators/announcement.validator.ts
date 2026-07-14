@@ -15,3 +15,9 @@ export const updateAnnouncementSchema = announcementSchema.partial().refine(
   (data) => Object.keys(data).length > 0,
   { message: "At least one field must be provided for update" }
 );
+
+export const getAnnouncementsQuerySchema = z.object({
+  search: z.string().optional(),
+  sort: z.enum(['newest', 'oldest']).optional(),
+  page: z.string().regex(/^[1-9]\d*$/, "Page must be a number greater than zero").optional()
+});

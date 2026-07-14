@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { createAnnouncement, getAnnouncements, getAnnouncementById, updateAnnouncement, deleteAnnouncement} from '../controllers/announcement.controller.js';
-import { validateBody } from '../middleware/validate.js';
+import { validateBody, validateQuery } from '../middleware/validate.js';
 import { authenticate } from '../middleware/authenticate.js';
-import { announcementSchema, updateAnnouncementSchema} from '../validators/announcement.validator.js';
+import { announcementSchema, updateAnnouncementSchema, getAnnouncementsQuerySchema} from '../validators/announcement.validator.js';
 
 
 const router = Router();
 
 
-router.get('/', getAnnouncements);
+router.get('/', validateQuery(getAnnouncementsQuerySchema), getAnnouncements);
 
 router.get('/:id', getAnnouncementById);
 

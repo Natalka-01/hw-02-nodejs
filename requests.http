@@ -113,3 +113,9 @@ Content-Type: application/json
   "price": 1500,
   "category": "sale"
 }
+
+### 15. Успішний запит з правильними параметрами
+GET {{baseUrl}}/announcements?search=стіл&sort=newest&page=1
+
+### 16. Помилка валідації 
+GET {{baseUrl}}/announcements?sort=random&page=abc
