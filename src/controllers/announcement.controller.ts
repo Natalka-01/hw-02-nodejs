@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import prisma from '../../prisma/client.js';
 
-// Створення оголошення
+
 export const createAnnouncement = async (req: Request, res: Response) => {
   try {
     const userId = (req as any).user.sub; // Беремо id автора з токена
@@ -17,7 +17,7 @@ export const createAnnouncement = async (req: Request, res: Response) => {
   }
 };
 
-// Отримання всіх оголошень
+
 export const getAnnouncements = async (req: Request, res: Response) => {
   try {
     const { search, sort, page: pageQuery } = req.query;
@@ -51,7 +51,7 @@ export const getAnnouncements = async (req: Request, res: Response) => {
       }
     });
 
-    // Формування відповіді
+    
     res.json({
       data: announcements,
       pagination: {

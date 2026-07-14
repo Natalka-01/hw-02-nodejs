@@ -18,14 +18,14 @@ registry.registerComponent("securitySchemes", "bearerAuth", {
 const security = [{ bearerAuth: [] }];
 
 
-// === AUTH ===
+// AUTH
 registry.registerPath({ method: 'post', path: '/auth/register', summary: 'Реєстрація', responses: { 201: { description: 'Created' } } });
 registry.registerPath({ method: 'post', path: '/auth/login', summary: 'Логін', responses: { 200: { description: 'OK' } } });
 registry.registerPath({ method: 'post', path: '/auth/refresh', summary: 'Оновлення токена', responses: { 200: { description: 'OK' } } });
 registry.registerPath({ method: 'get', path: '/auth/me', summary: 'Профіль', security, responses: { 200: { description: 'OK' } } });
 registry.registerPath({ method: 'post', path: '/auth/logout', summary: 'Логаут', security, responses: { 201: { description: 'Created' } } });
 
-// === ANNOUNCEMENTS ===
+//ANNOUNCEMENTS
 registry.registerPath({ method: 'get', path: '/announcements', summary: 'Всі оголошення', responses: { 200: { description: 'OK' } } });
 registry.registerPath({ method: 'get', path: '/announcements/{id}', summary: 'Одне оголошення', responses: { 200: { description: 'OK' } } });
 registry.registerPath({ method: 'post', path: '/announcements', summary: 'Створити', security, responses: { 201: { description: 'Created' } } });

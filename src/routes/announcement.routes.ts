@@ -7,12 +7,12 @@ import { announcementSchema, updateAnnouncementSchema} from '../validators/annou
 
 const router = Router();
 
-// Усі можуть бачити оголошення
+
 router.get('/', getAnnouncements);
 
 router.get('/:id', getAnnouncementById);
 
-// Тільки авторизовані користувачі можуть створювати (перевіряємо токен і дані)
+
 router.post('/', authenticate, validateBody(announcementSchema), createAnnouncement);
 
 router.patch('/:id', authenticate, validateBody(updateAnnouncementSchema), updateAnnouncement);

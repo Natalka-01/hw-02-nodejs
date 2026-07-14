@@ -6,7 +6,7 @@ import { registerSchema, loginSchema } from '../validators/auth.validator.js';
 
 const router = Router();
 
-// Публічні маршрути (з перевіркою введених даних)
+
 router.post('/register', validateBody(registerSchema), register);
 router.post('/login', validateBody(loginSchema), login);
 router.post('/refresh', refresh);

@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import prisma from '../../prisma/client.js';
 
-// Допоміжна функція для генерації токенів
+
 const generateTokens = (userId: number) => {
   const accessToken = jwt.sign({ sub: userId }, process.env.JWT_SECRET!, { expiresIn: '15m' });
   const refreshToken = jwt.sign({ sub: userId }, process.env.JWT_SECRET!, { expiresIn: '7d' });

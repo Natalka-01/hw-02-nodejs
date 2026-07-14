@@ -7,7 +7,7 @@ export const announcementSchema = z.object({
   category: z.string().min(2, "Category is required")
 });
 
-// Робить всі поля необов'язковими, але вимагає хоча б одне
+
 export const updateAnnouncementSchema = announcementSchema.partial().refine(
   (data) => Object.keys(data).length > 0,
   { message: "At least one field must be provided for update" }

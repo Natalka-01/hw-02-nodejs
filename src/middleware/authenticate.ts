@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-// Розширення типу Express, щоб TypeScript не сварився на req.user
+
 declare global {
   namespace Express {
     interface Request {

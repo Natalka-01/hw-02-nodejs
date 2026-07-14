@@ -22,7 +22,7 @@ app.use('/announcements', announcementRoutes);
 const openApiDocument = generateOpenApiDocument();
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(generateOpenApiDocument()));
 
-// 404 Not Found handler - must be after all routes
+
 app.use((_req: Request, res: Response) => {
   res.status(404).json({ error: "Not found" });
 });
