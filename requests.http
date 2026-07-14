@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTc4Mzg4MDIzMSwiZXhwIjoxNzgzODgxMTMxfQ.DD17NIYSU0V6NroRDzT0N0FTBvBz0luj6Jb52Vyp8Bc
-@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTc4Mzg4MDIzMSwiZXhwIjoxNzg0NDg1MDMxfQ.Zs7by9llvCS-UHe8xaJxj_pl9_aMOpkTkGKBzYkOLxk
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA0Nzc2MCwiZXhwIjoxNzg0MDQ4NjYwfQ.uAgJyte2XRtyAN4SXn4CaofhUHLQiM-HqvyF0w_US08
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA0Nzc2MCwiZXhwIjoxNzg0NjUyNTYwfQ.vRFCCDJDB8QcQhRsCXo0e2ooc62qEvcxGJERiFDL6OY
 
 ### 1. Реєстрація
 POST {{baseUrl}}/auth/register
@@ -69,3 +69,22 @@ Content-Type: application/json
 ### 10. Видалити оголошення
 DELETE {{baseUrl}}/announcements/1
 Authorization: Bearer {{token}}
+
+### 11. Отримати оголошення з пошуком та пагінацією
+GET {{baseUrl}}/announcements?search=велосипед&sort=oldest&page=1
+
+### 12. Отримати неіснуюче оголошення (має повернути 404)
+GET {{baseUrl}}/announcements/99999
+
+### 13. Спроба створити оголошення без даних (має повернути 400 Bad Request)
+POST {{baseUrl}}/announcements
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Ко", 
+  "price": -100 
+}
+
+### 14. Спроба видалити оголошення без токена (має повернути 401 Unauthorized)
+DELETE {{baseUrl}}/announcements/3
