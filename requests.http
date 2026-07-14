@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA0ODgyNiwiZXhwIjoxNzg0MDQ5NzI2fQ.WACnzLEGqFk1140BM8XGgtfrBJc2EZjzx7POgcse3W4
-@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA0ODgyNiwiZXhwIjoxNzg0NjUzNjI2fQ.Sun17hrMZzUl_afUBSPWJD4xuKWerjBUa1kqElyLRZY
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA1MDE2MCwiZXhwIjoxNzg0MDUxMDYwfQ.FLnoWFXGmpAc_mc_5phxBQR7nElvnEkvBCMhlAlcc5A
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTc4NDA1MDE2MCwiZXhwIjoxNzg0NjU0OTYwfQ.GgIRCLxdVVhW5bFdIFRcRW-3VtmQLCOfe3pQ5Lpf6hE
 
 ### 1. Реєстрація
 POST {{baseUrl}}/auth/register
@@ -119,3 +119,10 @@ GET {{baseUrl}}/announcements?search=стіл&sort=newest&page=1
 
 ### 16. Помилка валідації 
 GET {{baseUrl}}/announcements?sort=random&page=abc
+
+### 17. Помилка валідації Params (ID не є числом)
+GET {{baseUrl}}/announcements/abc
+
+### 18. Помилка валідації Params при видаленні
+DELETE {{baseUrl}}/announcements/bad-id
+Authorization: Bearer {{token}}

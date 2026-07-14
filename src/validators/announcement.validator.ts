@@ -21,3 +21,7 @@ export const getAnnouncementsQuerySchema = z.object({
   sort: z.enum(['newest', 'oldest']).optional(),
   page: z.string().regex(/^[1-9]\d*$/, "Page must be a number greater than zero").optional()
 });
+
+export const idParamSchema = z.object({
+  id: z.string().regex(/^\d+$/, "ID must be a number")
+});
